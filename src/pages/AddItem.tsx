@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Link, Upload, Loader2 } from 'lucide-react'
 import { extractFromLink, extractFromScreenshot } from '../services/gemini'
 import type { Category, SavedItem } from '../types'
-import { useItems } from '../context/ItemsContext'
+import { useItems } from '../context/ItemContext'
 
 
 type Step = 'input' | 'preview'

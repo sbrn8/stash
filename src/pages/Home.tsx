@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Masonry from 'react-responsive-masonry'
 import { Plus, Map } from 'lucide-react'
 import { SavedItemCard } from '../components/SavedItemCard'
-import { useItems } from '../context/ItemsContext'
+import { useItems } from '../context/ItemContext'
 import type { Category } from '../types'
 
 const CATEGORIES: (Category | 'All')[] = ['All', 'Restaurants', 'Travel', 'Fitness', 'Products']

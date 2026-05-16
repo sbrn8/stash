@@ -1,12 +1,13 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { ArrowLeft, MapPin, ExternalLink, Check } from 'lucide-react'
-import { mockSavedItems } from '../data/mockData'
+import { useItems } from '../context/ItemContext'
 import { useState } from 'react'
 
 export function ItemDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
-  const item = mockSavedItems.find(i => i.id === id)
+  const { items } = useItems()
+const item = items.find(i => i.id === id)
   const [status, setStatus] = useState(item?.status ?? 'saved')
 
   if (!item) {
