@@ -1,73 +1,50 @@
-# React + TypeScript + Vite
+# Stash
+Stash turns screenshots and links into an organized action list. Making the restaurants, trips, and workouts you save from TikTok and Reels actually happen.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Features
 
-Currently, two official plugins are available:
+- Save anything via screenshot upload or link paste
+- AI-powered extraction using Google Gemini — automatically pulls title, category, location, and summary
+- Pinterest-style masonry grid organized by category
+- Map view showing all saved locations as interactive pins
+- Mark items as done to track what you've actually followed through on
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- **Frontend:** React, TypeScript, Vite
+- **Styling:** Tailwind CSS
+- **Routing:** React Router
+- **Maps:** Leaflet / React Leaflet
+- **AI:** Google Gemini 1.5 Flash
+- **Deployment:** Vercel
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repo
+```bash
+   git clone https://github.com/YOURUSERNAME/stash.git
+   cd stash
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies
+```bash
+   npm install
 ```
+
+3. Add your Gemini API key — create a `.env` file in the root:
+```
+VITE_GEMINI_API_KEY=your-key-here
+```
+
+4. Run the dev server
+```bash
+   npm run dev
+```
+
+## Roadmap
+- [ ] Backend + PostgreSQL database for persistent storage
+- [ ] Auth with user accounts
+- [ ] Social layer — see what friends have saved
+- [ ] Deal scraping for saved restaurants and products
+- [ ] AI trip planner chat
+
