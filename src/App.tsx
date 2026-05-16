@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import { Home } from './pages/Home'
 import { ItemDetail } from './pages/ItemDetail'
 import { AddItem } from './pages/AddItem'
+import { MapView} from './pages/MapView'
 
 export default function App() {
   return (
@@ -9,6 +10,7 @@ export default function App() {
       <Route path="/" element={<Home />} />
       <Route path="/item/:id" element={<ItemDetail />} />
       <Route path="/add" element={<AddItem />} />
+      <Route path="/map" element={<MapView />} />
     </Routes>
   )
 }
