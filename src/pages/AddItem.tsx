@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, Link, Upload, Loader2 } from 'lucide-react'
 import { extractFromLink, extractFromScreenshot } from '../services/gemini'
 import type { Category, SavedItem } from '../types'
+import { useItems } from '../context/ItemsContext'
+
 
 type Step = 'input' | 'preview'
 
@@ -21,6 +23,7 @@ interface ExtractedData {
 
 export function AddItem() {
   const navigate = useNavigate()
+  const { addItem } = useItems()
   const [step, setStep] = useState<Step>('input')
   const [inputType, setInputType] = useState<'link' | 'screenshot' | null>(null)
   const [url, setUrl] = useState('')
@@ -80,29 +83,28 @@ export function AddItem() {
     }
   }
 
-  const handleSave = () => {
+    const handleSave = () => {
     if (!extracted) return
 
-    // This will hook into real state/database later
     const newItem: SavedItem = {
-      id: Date.now().toString(),
-      user_id: 'mock-user-1',
-      title,
-      description: extracted.description,
-      category,
-      thumbnail_url: imagePreview ?? 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800',
-      source_type: inputType === 'link' ? 'link' : 'screenshot',
-      source_url: url || undefined,
-      location: extracted.location?.name ? extracted.location : undefined,
-      tags: extracted.tags,
-      ai_summary: notes || extracted.ai_summary,
-      status: 'saved',
-      created_at: new Date().toISOString(),
+        id: Date.now().toString(),
+        user_id: 'mock-user-1',
+        title,
+        description: extracted.description,
+        category,
+        thumbnail_url: imagePreview ?? 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800',
+        source_type: inputType === 'link' ? 'link' : 'screenshot',
+        source_url: url || undefined,
+        location: extracted.location?.name ? extracted.location : undefined,
+        tags: extracted.tags,
+        ai_summary: notes || extracted.ai_summary,
+        status: 'saved',
+        created_at: new Date().toISOString(),
     }
 
-    console.log('Saved item:', newItem)
+    addItem(newItem)
     navigate('/')
-  }
+    }
 
   if (step === 'preview' && extracted) {
     return (

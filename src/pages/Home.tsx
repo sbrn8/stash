@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import Masonry from 'react-responsive-masonry'
 import { Plus, Map } from 'lucide-react'
 import { SavedItemCard } from '../components/SavedItemCard'
-import { mockSavedItems } from '../data/mockData'
+import { useItems } from '../context/ItemsContext'
 import type { Category } from '../types'
 
 const CATEGORIES: (Category | 'All')[] = ['All', 'Restaurants', 'Travel', 'Fitness', 'Products']
@@ -12,11 +12,12 @@ export function Home() {
   const navigate = useNavigate()
   const [selectedCategory, setSelectedCategory] = useState<Category | 'All'>('All')
 
+  const { items } = useItems()
   const filteredItems = selectedCategory === 'All'
-    ? mockSavedItems
-    : mockSavedItems.filter(item => item.category === selectedCategory)
+    ? items
+    : items.filter(item => item.category === selectedCategory)
 
-  if (mockSavedItems.length === 0) {
+  if (items.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center p-6">
         <div className="max-w-md text-center">
